@@ -1,0 +1,292 @@
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 150px;
+  width: 100%;
+  background-color: #1E90FF;
+  color: white;
+  position: relative;
+}
+
+.logo {
+  height: 42px;
+  width: 210px;
+  margin: 10px 20px;
+}
+
+header h1 {
+  bottom: 0px;
+  padding-left: 20px;
+  font-size: 24px;
+  font-weight: 200;
+}
+/* End Header */
+
+/* Navbar*/
+.desktopNav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 35px;
+  width: 100%;
+  background-color: #383D38;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.desktopNav a:hover {
+  color: cornflowerblue;
+}
+
+.mobile-nav {
+  position: absolute;
+  left: -200px;
+  top: 0px;
+  transition: 0.6s;
+   
+}
+
+.mobile-nav li {
+  width: 80%;
+  border: 0.5px solid lightgray;
+  padding: 15px 0px 15px 35px;
+  position: relative;
+  background: #1E90FF;
+  color: white;
+}
+
+.mobile-nav li:active {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.mobile-nav a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.slide-menu {
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.mobile-nav a:hover {
+  color: cornflowerblue;
+}
+
+.ham-menu {
+  width: 50px;
+  height: 50px;
+  margin-left: 20px;
+  background: url('./Components/Menu.js') ;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: none;
+}
+
+#close-ham-menu {
+  background-color:#2B2F2A;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #2B2F2A;
+  width: 200px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content li{
+  width: 100%;
+  padding: 10px;
+  border-bottom: 0.5px solid lightgray;
+  /* background-color: lightgray; */
+  background-color: ghostwhite;
+  color: #2B2F2A;
+}
+
+.dropdown-content li:hover {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* End Navbar */
+
+/* Profile */
+.profile-container {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-img {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.name {
+  font-size: 12px;
+  color: white;
+  margin-top: 5px;
+}
+/* End Profile */
+
+/* Login */
+.login-hdr {
+  background-color: #1E90FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.login-main {
+  height: 100vh;
+  width: 100%;
+  background-image: url('./Assets/khachik-simonian-269941-unsplash.jpg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.button-container {
+  width: 250px;
+  height: 150px;
+  background-color: #1E90FF;
+  background: rgba(253, 253, 253, 0.5);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  box-shadow: 0px 1px 2px 0px gray;
+}
+
+.login-button {
+  padding: 10px 30px;
+  background: linear-gradient(to bottom right, #4897D9, #0E5794);
+  font-size: 20px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  color: cadetblue;
+}
+
+a:active button {
+  padding: 18px 38px;
+}
+/* End Login */
+
+/* Footer */
+footer {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1E90FF;
+  position: fixed;
+  bottom: 0px;
+  box-shadow: -1px -1px 1px grey;
+  font-size: 20px;
+  color: white;
+}
+
+.left {
+  height: 100%;
+  padding: 20px 30px 20px 50px;
+}
+
+/* .glyphicon-home {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: cornflowerblue;
+  color: white;
+} */
+
+.center {
+  padding: 20px 20px;
+  border-left: 1px solid lightgray;
+  background-color: #1E90FF;
+}
+
+.right {
+  border-left: 1px solid lightgray;
+  padding: 20px 50px 20px 30px;
+  background-color: #1E90FF;
+  text-decoration: none;
+  color: white;
+}
+
+a {
+  font-size: 20px;
+}
+
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+/* End Footer */
+
+/* Media Queries */
+@media(max-width:375px){
+  h1 {
+      width: 250px;
+  }
+}
+
+@media(min-width: 768px){
+  .pro-container{
+      top: 40px;
+  }
+}
+
+@media(max-width: 768px){
+  .desktopNav {
+      display: none;
+  }
+  .ham-menu{
+      display: block;
+  }
+  .ham-pad {
+      padding-top: 20px;
+      width: 50px;
+      height: 50px;
+  }
+}
