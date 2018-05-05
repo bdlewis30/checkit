@@ -6,16 +6,12 @@ const express = require('express')
     , Auth0Strategy = require('passport-auth0')
     , massive = require('massive');
 
-const{
-    SESSION_SECRET,
+const {
     AUTH_DOMAIN,
     AUTH_CLIENT_ID,
     AUTH_CLIENT_SECRET,
     AUTH_CALLBACK_URL,
-    CONNECTION_STRING,
-    SUCCESSREDIRECT,
-    FAILUREREDIRECT,
-    SERVER_PORT
+    CONNECTION_STRING
 } = process.env
 
 const app = express();
@@ -23,7 +19,7 @@ app.use(bodyParser.json());
 app.use(express.static(`${__dirname}/../build`));
 
 app.use(session({
-    secret: SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }))
@@ -40,12 +36,16 @@ passport.use(new Auth0Strategy({
     clientSecret: AUTH_CLIENT_SECRET,
     callbackURL: AUTH_CALLBACK_URL,
     scope: 'openid profile'
-}, function(accessToken, refreshToken, extraParams, profile, done){
+}, function (accessToken, refreshToken, extraParams, profile, done) {
     let { displayName, picture, user_id } = profile;
     const db = app.get('db');
-    db.find_user([user_id]).then(function(user){
-        if(!user[0]){
-            db.create_user([displayName, picture, user_id]).then(user => {
+    db.users.find_user([user_id]).then(function (user) {
+        if (!user[0]) {
+            db.users.create_user([
+                displayName,
+                picture,
+                user_id
+            ]).then(user => {
                 return done(null, user[0].id)
             })
         }
@@ -58,15 +58,18 @@ passport.use(new Auth0Strategy({
 passport.serializeUser((id, done) => {
     return done(null, id)
 })
+
 passport.deserializeUser((id, done) => {
-    app.get('db').find_session_user(id).then(function(user){
-        return done(null, user[0])
-    })
+    app.get('db').users.find_session_user([id])
+        .then(function (user) {
+            return done(null, user[0])
+        })
 })
-app.get('/auth', passport.authenticate('auth0'));
+
+app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: SUCCESSREDIRECT,
-    failureRedirect: FAILUREREDIRECT
+    successRedirect: process.env.SUCCESSREDIRECT,
+    failureRedirect: process.env.FAILUREREDIRECT
 }))
 
 app.get('/auth/me', (req, res) => {
@@ -83,6 +86,8 @@ app.get('auth/logout', function (req, res) {
     res.redirect('/')
 })
 
+
+const { SERVER_PORT } = process.env
 app.listen(SERVER_PORT, () => {
     console.log(`Listening on port: ${SERVER_PORT}`)
-})
+});

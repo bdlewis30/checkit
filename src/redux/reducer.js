@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const initialState = {
     user: {},
@@ -9,12 +9,13 @@ const GET_USER_INFO = 'GET_USER_INFO';
 const LOGIN_LOGOUT = 'LOGIN_LOGOUT';
 
 export function getUserInfo() {
-    let userData = axios.get('/auth/me').then(res => {
-        return res.data;
+    let promise = axios.get('/auth/me').then(res => res.data)
+    .catch(error => {
+        console.log('getUserInfo Error:', error)
     })
     return {
         type: GET_USER_INFO,
-        payload: userData
+        payload: promise
     }
 }
 
@@ -25,8 +26,8 @@ export function logInOut(bool){
     }
 }
 
-export default function reducer(state = initialState, action){
-    switch(action.type){
+export default function reducer(state = initialState, action) {
+    switch (action.type) {
         case GET_USER_INFO + '_FULFILLED':
             return Object.assign({}, state, { user: action.payload })
         case LOGIN_LOGOUT:

@@ -1,34 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Link, Redirect } from 'react-router-dom';
-import { getUserInfo } from '../reducer/reducer';
+import { getUserInfo, logInOut } from '../redux/reducer';
 import '../App.css';
 
-export class Profile extends Component {
+class Profile extends Component {
 
-    componenetDidMount() {
+    componentDidMount(auth_id) {
         this.props.getUserInfo()
     }
-
+    
     render() {
-        // if (!this.props.loggedIn) {
-        //     return <Redirect to='/Login' />
-        // }
 
         return (
             <div className="profile-container">
                 <img className="profile-img" src={this.props.picture} alt="profile" />
-                <div className="name">{this.props.username}</div>
+                <div className="name">{this.props.name}</div>
             </div>
         )
     }
 }
 
-function mapStateToProps(state) {
-    return {
+function mapStateToProps(state){
+    return{
         picture: state.user.picture,
-        username: state.user.displayName,
-        loggedIn: state.loggedIn
+        name: state.user.name,
     }
 }
 
