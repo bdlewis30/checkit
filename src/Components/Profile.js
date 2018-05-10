@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserInfo, logInOut } from '../redux/reducer';
+import { getUserInfo } from '../redux/reducer';
 import '../App.css';
 
 class Profile extends Component {
 
-    componentDidMount(auth_id) {
+    componentDidMount() {
         this.props.getUserInfo()
     }
     

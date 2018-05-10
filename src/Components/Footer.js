@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logInOut } from '../redux/reducer';
 import { Icon, Button, Popup } from 'semantic-ui-react';
@@ -19,15 +19,16 @@ class Footer extends Component {
         this.props.LOGIN_LOGOUT(false)
     }
 
-    handleClick = (e) => {
-        <Link to='/' />
-    }
+    // handleClick = () => {
+    //     // alert('You should be logging out, but probably not.')
+    //     return <Link to='/' />
+    // }
 
     render() {
         const logOutButton = <div className="right-footer">
             <Popup
                 trigger={<Button color='red' content='Logout' />}
-                content={<Button color='green' content='Confirm logout' onClick={(e) => this.handleClick()} />}
+                content={<Link to='/'><Button color='green' content='Confirm logout' /></Link>}
                 on='click'
                 position='top right'
             />
@@ -35,6 +36,7 @@ class Footer extends Component {
         const homeButton = <Link to="/dashboard" className="left-footer"><Icon color="black" name="home" size="big" /></Link>
         return (
             <div>
+                <div className="space"></div>
                 <footer className="footer-container">
                     <div className="footer-content">
                         {/* <Link to="/dashboard" className="left-footer"><Icon color="black" name="home" size="big" /></Link> */}

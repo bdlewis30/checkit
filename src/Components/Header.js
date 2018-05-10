@@ -25,7 +25,7 @@ export default class Header extends Component {
 
     render() {
         return (
-            <div>
+            <div className="header-container">
                 <header>
                     <div className="left-header">
                         <Icon color="black" name="bars" size="big" />

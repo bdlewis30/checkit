@@ -86,6 +86,8 @@ app.get('auth/logout', function (req, res) {
     res.redirect('/')
 })
 
+let router = require('./api')
+app.use('/api', router)
 
 const { SERVER_PORT } = process.env
 app.listen(SERVER_PORT, () => {

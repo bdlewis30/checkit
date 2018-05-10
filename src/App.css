@@ -1,4 +1,8 @@
 /* Header */
+.header-container {
+  position: sticky;
+  top: 0px;
+}
 header {
   display: flex;
   justify-content: space-between;
@@ -43,7 +47,7 @@ header h1 {
 /* End Header */
 
 /* Navbar*/
-.desktopNav {
+/* .desktopNav {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -130,7 +134,6 @@ header h1 {
   width: 100%;
   padding: 10px;
   border-bottom: 0.5px solid lightgray;
-  /* background-color: lightgray; */
   background-color: ghostwhite;
   color: #2B2F2A;
 }
@@ -142,7 +145,7 @@ header h1 {
 
 .dropdown:hover .dropdown-content {
   display: block;
-}
+} */
 
 /* End Navbar */
 
@@ -193,7 +196,6 @@ header h1 {
 .button-container {
   width: 250px;
   height: 150px;
-  /* background-color: #1E90FF; */
   background: rgba(253, 253, 253, 0.5);
   border-radius: 10px;
   display: flex;
@@ -224,6 +226,12 @@ a:active button {
   padding: 8px 28px;
 }
 /* End Login */
+
+/* Accounts */
+.table-header {
+  display: inherit;
+}
+/* End Accounts */
 
 /* Footer */
 .footer-container {
@@ -294,6 +302,13 @@ a:hover {
 
 /* End Footer */
 
+/* Footer Space */
+.space {
+  height: 55px;
+  width: 100%;
+}
+/* End Footer Space */
+
 /* Media Queries */
 @media(max-width:375px){
   h1 {
@@ -310,7 +325,13 @@ a:hover {
   }
 }
 
-@media(max-width: 768px){
+@media(max-width: 414px){
+  .table-header {
+    display: none;
+  }
+}
+
+/* @media(max-width: 768px){
   .desktopNav {
       display: none;
   }
@@ -322,4 +343,4 @@ a:hover {
       width: 50px;
       height: 50px;
   }
-}
+} */
