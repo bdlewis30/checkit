@@ -18,7 +18,6 @@ class Accounts extends Component {
 
     componentDidMount() {
         this.props.getAllAccounts()
-        this.props.getTransactions()
     }
 
     showMoneyModal = size => () => this.setState({ size, openMoney: true })
@@ -31,10 +30,6 @@ class Accounts extends Component {
     render() {
         const options = _.map(this.props.accounts, (accounts, index) => {
             return <option key={accounts.id} value={accounts.id}>{accounts.account_name}</option>
-        })
-
-        const transactions = _.map(this.props.transactions, (transactions, index) => {
-            return 
         })
 
         const { openMoney, openDate, openTransaction, size } = this.state
@@ -96,13 +91,13 @@ class Accounts extends Component {
                     </select>
                 </section>
                 <Table celled size='small' columns={5} selectable>
-                    <Table.Header fullWidth className="table-header">
-                        <Table.Row className="table-header">
-                            <Table.HeaderCell className="table-header">Transaction</Table.HeaderCell>
-                            <Table.HeaderCell className="table-header">Date</Table.HeaderCell>
-                            <Table.HeaderCell className="table-header">Debit</Table.HeaderCell>
-                            <Table.HeaderCell className="table-header">Credit</Table.HeaderCell>
-                            <Table.HeaderCell className="table-header">Balance</Table.HeaderCell>
+                    <Table.Header fullWidth>
+                        <Table.Row>
+                            <Table.HeaderCell >Transaction</Table.HeaderCell>
+                            <Table.HeaderCell >Date</Table.HeaderCell>
+                            <Table.HeaderCell >Debit</Table.HeaderCell>
+                            <Table.HeaderCell >Credit</Table.HeaderCell>
+                            <Table.HeaderCell >Balance</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
 
@@ -155,7 +150,7 @@ class Accounts extends Component {
 function mapStateToProps(state) {
     return {
         accounts: state.accounts,
-        transactions: state.transactions
+        transactions: state.transa
     }
 }
 

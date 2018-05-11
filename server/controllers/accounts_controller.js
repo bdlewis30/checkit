@@ -4,12 +4,15 @@ const handleError = (error, res) => {
 
 const controller = {
     getAllAccounts: (req, res) => {
+        debugger;
         const db = req.app.get('db')
-        const users_id = req.headers['x-user-id'];
+        const user_id = req.headers['x-user-id'];
 
-        db.accounts.get_all_accounts([users_id]).then(res => {
-            req.status(200).send(res)
-        }).catch(error => handleError(error, res))
+        db.accounts.get_all_accounts([user_id]).then(results => {
+            res.status(200).send(results)
+        }).catch(error => {
+            console.log(error)
+        })
     }
 }
 

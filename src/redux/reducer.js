@@ -24,8 +24,10 @@ export function getUserInfo() {
 }
 
 export function getAllAccounts() {
-    let promise = axios.get('/api/accounts').then(res => res.data)
-        .catch(error => {
+    let promise = axios.get('/api/accounts').then(res => {
+        debugger;
+        return res.data
+    }).catch(error => {
             console.log('getAllAccounts Error:', error)
         })
     console.log('getAllAccounts promise:', promise)
@@ -56,6 +58,7 @@ export function logInOut(bool) {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_USER_INFO + '_FULFILLED':
+            axios.defaults.headers.common['x-user-id'] = action.payload.id;
             return Object.assign({}, state, { user: action.payload })
         case GET_ALL_ACCOUNTS + '_FULFILLED':
             return Object.assign({}, state, { accounts: action.payload })
