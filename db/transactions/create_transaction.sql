@@ -1,6 +1,8 @@
-INSERT INTO Transactions (acct_type, t_date, t_desc, debits, credits, acct_id)
-VALUES ($1, $2, $3, $4, $5, $6);
-SELECT t.*, a.acct_name, a.start_bal 
-FROM Transactions t 
-JOIN Accounts a ON t.acct_id = a.id
+INSERT INTO transactions (t_date, t_desc, debits, credits, balance, acct_id)
+VALUES ($1, $2, $3, $4, $5, $6)
+WHERE balance = a.balance + a.debits - a.credits
+JOIN accounts a ON t.acct_id = a.id;
+SELECT t.*, a.account_name, a.open_balance 
+FROM transactions t 
+JOIN accounts a ON t.acct_id = a.id
 WHERE acct_id = $6;

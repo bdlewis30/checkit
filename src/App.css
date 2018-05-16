@@ -231,6 +231,13 @@ a:active button {
 .table-header {
   display: inherit;
 }
+
+.accounts-select-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
 /* End Accounts */
 
 /* Footer */

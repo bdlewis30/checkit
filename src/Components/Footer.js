@@ -11,7 +11,7 @@ class Footer extends Component {
         super()
 
         this.state = {
-            loggedIn: false
+           
         }
     }
 

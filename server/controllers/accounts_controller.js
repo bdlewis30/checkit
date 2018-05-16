@@ -4,15 +4,52 @@ const handleError = (error, res) => {
 
 const controller = {
     getAllAccounts: (req, res) => {
-        debugger;
         const db = req.app.get('db')
         const user_id = req.headers['x-user-id'];
 
         db.accounts.get_all_accounts([user_id]).then(results => {
             res.status(200).send(results)
-        }).catch(error => {
-            console.log(error)
-        })
+        }).catch(error => handleErrors(error, res))
+    },
+    getOneAccount: (req, res) => {
+        const db = req.app.get('db')
+        const user_id = req.headers['x-user-id'];
+        const id = parseInt(req.params.id)
+
+        db.accounts.get_one_account([id, user_id])
+            .then((rows) => {
+                res.status(200).send(rows[0])
+            }).catch(error => handleErrors(error, res))
+    },
+    create: (req, res) => {
+        const db = req.app.get('db')
+        const user_id = req.headers['x-user-id'];
+        const { account_name, open_balance, acct_num } = req.body
+
+        db.accounts.create_account([account_name, open_balace, acct_num, user_id])
+            .then((accounts) => {
+                res.status(200).send(accounts[0])
+            }).catch(error => handleErrors(error, res))
+    },
+    update: (req, res) => {
+        const db = req.app.get('db')
+        const user_id = req.headers['x-user-id'];
+        const { account_name, open_balance, acct_num } = req.body
+
+        db.accounts.update_accounts([account_name, open_balance, acct_num, id, user_id])
+            .then((accounts) => {
+                res.status(200).send(accounts[0])
+            }).catch(error => handleErrors(error, res))
+    },
+    delete: (req, res) => {
+        const db = req.app.get('db')
+        const user_id = req.headers['x-user-id'];
+        const id = parseInt(req.params.id)
+
+        db.accounts.delete_account([id. user_id])
+        .then((accounts) => {
+            res.status(200).send()
+        }).catch(error => handleErrors(error, res))
     }
 }
 
