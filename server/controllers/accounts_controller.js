@@ -26,7 +26,7 @@ const controller = {
         const user_id = req.headers['x-user-id'];
         const { account_name, open_balance, acct_num } = req.body
 
-        db.accounts.create_account([account_name, open_balace, acct_num, user_id])
+        db.accounts.create_account([account_name, open_balance, acct_num, user_id])
             .then((accounts) => {
                 res.status(200).send(accounts[0])
             }).catch(error => handleErrors(error, res))

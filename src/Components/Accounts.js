@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { getAllAccounts } from '../redux/reducer';
 import _ from 'lodash';
@@ -12,7 +13,6 @@ class Accounts extends Component {
 
         this.state = {
             openAccount: false,
-            newAccount: [],
             account_name: '',
             open_balance: 0,
             acct_num: 0
@@ -20,6 +20,7 @@ class Accounts extends Component {
         this.handleAccountName = this.handleAccountName.bind(this);
         this.handleOpenBalance = this.handleOpenBalance.bind(this);
         this.handleAcctNum = this.handleAcctNum.bind(this);
+        this.createAccount = this.createAccount.bind(this);
     }
 
     componentDidMount() {
@@ -41,6 +42,21 @@ class Accounts extends Component {
     handleAcctNum(value) {
         this.setState({
             acct_num: value
+        })
+    }
+
+    createAccount(){
+        const body = {
+            account_name: this.state.account_name,
+            open_balance: this.state.open_balance,
+            acct_num: this.state.acct_num
+        };
+        axios.post('/api/accounts', body)
+        .then(res => {
+            this.closeAccountModal()
+            this.props.getAllAccounts()
+        }, error => {
+            console.log(error)
         })
     }
 
@@ -70,7 +86,7 @@ class Accounts extends Component {
             </Modal.Content>
             <Modal.Actions>
                 <Button onClick={this.closeAccountModal} negative>Cancel</Button>
-                <Button onClick={this.closeAccountModal} positive icon='checkmark' labelPosition='right' content='Submit' />
+                <Button onClick={this.createAccount} positive icon='checkmark' labelPosition='right' content='Submit' />
             </Modal.Actions>
         </Modal>
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getTransactions, getAccount } from '../redux/reducer';
-import { Table, Button, Modal, Input, Label } from 'semantic-ui-react';
+import { Responsive, Table, Button, Modal, Input, Label } from 'semantic-ui-react';
 import _ from 'lodash';
 
 class Ledger extends Component {
@@ -16,7 +16,7 @@ class Ledger extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.getAccount()
         this.props.getTransactions()
     }
@@ -79,33 +79,40 @@ class Ledger extends Component {
 
         return (
             <div>
-                <Table size='small' selectable disabled='true'>
-                    <Table.Header fullWidth>
-                        <Table.Row>
+                <Table celled selectable stackable textAlign='right' >
+                    <Responsive as={Table.Header} minWidth={767} >
+                        <Table.Row textAlign='left'>
                             <Table.HeaderCell >Transaction</Table.HeaderCell>
                             <Table.HeaderCell >Date</Table.HeaderCell>
                             <Table.HeaderCell >Debit</Table.HeaderCell>
                             <Table.HeaderCell >Credit</Table.HeaderCell>
                             <Table.HeaderCell >Balance</Table.HeaderCell>
                         </Table.Row>
-                    </Table.Header>
+                    </Responsive>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Cell textAlign='left' >Opening Balance</Table.Cell>
+                            <Table.Cell ></Table.Cell>
+                            <Table.Cell ></Table.Cell>
+                            <Table.Cell ></Table.Cell>
+                            <Table.Cell >$100.00</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell selectable textAlign='left' onClick={this.showTransactionModal('mini')}>Burger King Wopper</Table.Cell>
+                            <Table.Cell selectable onClick={this.showDateModal('mini')}>3/7/2018</Table.Cell>
+                            <Table.Cell selectable onClick={this.showMoneyModal('mini')}>4.95</Table.Cell>
+                            <Table.Cell selectable onClick={this.showMoneyModal('mini')}></Table.Cell>
+                            <Table.Cell >$95.05</Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell selectable textAlign='left' onClick={this.showTransactionModal('mini')}>Shirt and pants</Table.Cell>
+                            <Table.Cell selectable onClick={this.showDateModal('mini')}>3/8/2018</Table.Cell>
+                            <Table.Cell selectable onClick={this.showMoneyModal('mini')}>50.95</Table.Cell>
+                            <Table.Cell selectable onClick={this.showMoneyModal('mini')}></Table.Cell>
+                            <Table.Cell >$44.10</Table.Cell>
+                        </Table.Row>
+                    </Table.Body>
                 </Table>
-                <Table.Body>
-                    <Table.Row>
-                        <Table.Cell >Opening Balance</Table.Cell>
-                        <Table.Cell ></Table.Cell>
-                        <Table.Cell ></Table.Cell>
-                        <Table.Cell ></Table.Cell>
-                        <Table.Cell >$100.00</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell selectable onClick={this.showTransactionModal('mini')}>Burger King Wopper</Table.Cell>
-                        <Table.Cell selectable onClick={this.showDateModal('mini')}>3/7/2018</Table.Cell>
-                        <Table.Cell selectable onClick={this.showMoneyModal('mini')}>4.95</Table.Cell>
-                        <Table.Cell selectable onClick={this.showMoneyModal('mini')}></Table.Cell>
-                        <Table.Cell >$95.05</Table.Cell>
-                    </Table.Row>
-                </Table.Body>
                 {dateModal}
                 {moneyModal}
                 {transactioModal}
