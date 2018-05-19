@@ -5,7 +5,8 @@ import { Route, Switch } from 'react-router-dom';
 import Header from './Components/Header';
 import Login from './Components/Login';
 import Dashboard from './Components/Dashboard';
-import Accounts from './Components/Accounts';
+import Transactions from './Components/Transactions';
+import DeleteAccounts from './Components/DeleteAccounts';
 import Balance from './Components/Balance';
 import Footer from './Components/Footer';
 
@@ -17,8 +18,9 @@ class App extends Component {
         <Switch>
           <Route path='/' exact component={Login} />
           <Route path='/dashboard' component={Dashboard} />
-          <Route path='/accounts' component={Accounts} />
-          <Route path='/balance' component={Balance} />
+          <Route path='/transactions' component={Transactions} exact/>
+          <Route path='/accounts/delete-account' component={DeleteAccounts} />
+          <Route path='/balance' component={Balance}/>
         </Switch>
         <Footer />
       </div>

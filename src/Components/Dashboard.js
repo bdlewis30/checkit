@@ -7,8 +7,8 @@ export default class Dashboard extends Component {
     render() {
         return (
             <div className="">
-                <h1>Dashboard</h1>
-                <Link to='/accounts'><Button>Accounts</Button></Link>
+                <Link to='/transactions'><Button>Transactions</Button></Link>
+                <Link to='/accounts/delete-account'><Button>Delete Account</Button></Link>
             </div>
         )
     }

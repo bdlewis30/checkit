@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { connect } from 'react-redux';
 import { getTransactions, getAccount } from '../redux/reducer';
 import { Responsive, Table, Button, Modal, Input, Label } from 'semantic-ui-react';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 class Ledger extends Component {
     constructor() {
@@ -29,9 +29,9 @@ class Ledger extends Component {
     closeMoneyModal = () => this.setState({ openMoney: false })
 
     render() {
-        const ledgerRows = _.map(this.props.accounts, (accounts, index) => {
-            return <option key={accounts.id} value={accounts.id}>{accounts.account_name}</option>
-        })
+        // const ledgerRows = _.map(this.props.accounts, (accounts, index) => {
+        //     return <option key={accounts.id} value={accounts.id}>{accounts.account_name}</option>
+        // })
 
         const { openDate, openMoney, openTransaction, size } = this.state
 

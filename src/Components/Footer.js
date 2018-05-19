@@ -56,4 +56,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { logInOut })(Footer)
+export default connect(mapStateToProps, {logInOut})(Footer)

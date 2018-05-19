@@ -2,7 +2,7 @@ import axios from "axios";
 
 const initialState = {
     user: {},
-    loggedIn: '',
+    loggedIn: false,
     accounts: {},
     transactions: {}
 }
